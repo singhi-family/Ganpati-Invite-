@@ -1,0 +1,884 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta name="theme-color" content="#061a42" />
+
+  <title>Ganpati Bappa Morya | The Singhi Family</title>
+
+  <style>
+    :root {
+      --navy: #061a42;
+      --deep-navy: #020d25;
+      --blue: #123b78;
+      --gold: #c99838;
+      --light-gold: #f5d987;
+      --cream: #fff8e7;
+      --dark-text: #17335b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--deep-navy);
+      color: var(--cream);
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .section {
+      position: relative;
+      width: 100%;
+      min-height: 100svh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding:
+        max(24px, env(safe-area-inset-top))
+        18px
+        max(32px, env(safe-area-inset-bottom));
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 5;
+      width: min(100%, 560px);
+      text-align: center;
+    }
+
+    .section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background:
+        radial-gradient(
+          circle at 50% 30%,
+          rgba(255, 214, 126, 0.16),
+          transparent 42%
+        ),
+        linear-gradient(
+          90deg,
+          rgba(0, 8, 27, 0.5),
+          transparent 25%,
+          transparent 75%,
+          rgba(0, 8, 27, 0.5)
+        );
+    }
+
+    .om {
+      color: var(--light-gold);
+      font-size: clamp(34px, 10vw, 66px);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .eyebrow {
+      color: var(--light-gold);
+      font-size: 11px;
+      letter-spacing: 3px;
+      line-height: 1.5;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      color: var(--light-gold);
+      font-size: clamp(42px, 13vw, 78px);
+      line-height: 0.95;
+      margin-bottom: 22px;
+    }
+
+    h2 {
+      color: var(--gold);
+      font-size: clamp(32px, 9vw, 58px);
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .subtitle {
+      color: var(--cream);
+      font-size: clamp(17px, 4.7vw, 23px);
+      line-height: 1.55;
+    }
+
+    /* Opening video */
+
+    .opening {
+      background: var(--deep-navy);
+      text-align: center;
+    }
+
+    .opening-video {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: var(--deep-navy);
+    }
+
+    .opening-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(1, 10, 29, 0.38),
+          rgba(1, 10, 29, 0.15) 45%,
+          rgba(1, 10, 29, 0.84)
+        );
+    }
+
+    .opening-content {
+      z-index: 5;
+    }
+
+    /* Visible modak button */
+
+    .modak-button {
+      width: 112px;
+      height: 112px;
+      margin: 30px auto 18px;
+      display: grid;
+      place-items: center;
+      border: 2px solid var(--light-gold);
+      border-radius: 50%;
+      background: rgba(255, 221, 137, 0.16);
+      box-shadow:
+        0 0 0 8px rgba(245, 217, 135, 0.18),
+        0 12px 34px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .modak-button:hover,
+    .modak-button:active {
+      transform: scale(1.08);
+    }
+
+    .modak-shape {
+      position: relative;
+      width: 52px;
+      height: 62px;
+      display: block;
+      background: linear-gradient(
+        135deg,
+        #fff2b5 0%,
+        #e7bd5e 55%,
+        #a66d17 100%
+      );
+      clip-path: polygon(
+        50% 0%,
+        63% 15%,
+        79% 9%,
+        75% 27%,
+        95% 33%,
+        78% 47%,
+        89% 63%,
+        67% 61%,
+        50% 100%,
+        33% 61%,
+        11% 63%,
+        22% 47%,
+        5% 33%,
+        25% 27%,
+        21% 9%,
+        37% 15%
+      );
+      filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.4));
+    }
+
+    .modak-shape::before,
+    .modak-shape::after {
+      content: "";
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      height: 2px;
+      border-radius: 50%;
+      background: rgba(112, 65, 8, 0.52);
+    }
+
+    .modak-shape::before {
+      top: 25px;
+      box-shadow: 0 9px 0 rgba(112, 65, 8, 0.52);
+    }
+
+    .modak-shape::after {
+      top: 43px;
+    }
+
+    .tap-label {
+      color: var(--cream);
+      font-size: 14px;
+      letter-spacing: 1px;
+    }
+
+    /* Welcome */
+
+    .welcome {
+      text-align: center;
+      background:
+        linear-gradient(rgba(3, 15, 44, 0.17), rgba(3, 15, 44, 0.72)),
+        url("https://static.prod-images.emergentagent.com/jobs/05f0b221-759e-47bc-87ea-8b5e2481c22f/images/f61874cbe71ad4fa0d4b6205dbbe92e8849480736026a092fc1e29e21cc8010d.jpeg")
+        center / cover;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      z-index: 6;
+      bottom: max(22px, env(safe-area-inset-bottom));
+      left: 50%;
+      width: max-content;
+      color: var(--light-gold);
+      font-size: 13px;
+      letter-spacing: 1px;
+      transform: translateX(-50%);
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translate(-50%, 0);
+      }
+
+      50% {
+        transform: translate(-50%, 9px);
+      }
+    }
+
+    /* Invitation */
+
+    .invitation {
+      min-height: auto;
+      padding-top: 58px;
+      padding-bottom: 58px;
+      color: var(--dark-text);
+      background:
+        linear-gradient(
+          rgba(255, 248, 231, 0.9),
+          rgba(255, 248, 231, 0.94)
+        ),
+        url("https://static.prod-images.emergentagent.com/jobs/05f0b221-759e-47bc-87ea-8b5e2481c22f/images/ea64e26b077550c69ce589e0ae59d0e395c20aa33f62775007a5451b42452a56.jpeg")
+        center / cover;
+    }
+
+    .invitation::after {
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(255, 215, 133, 0.18),
+          transparent 45%
+        );
+    }
+
+    .invitation-card {
+      position: relative;
+      z-index: 5;
+      width: min(100%, 530px);
+      padding: clamp(28px, 7vw, 52px) clamp(20px, 6vw, 48px);
+      color: var(--dark-text);
+      text-align: center;
+      background: rgba(255, 250, 234, 0.96);
+      border: 2px solid var(--gold);
+      border-radius: 20px;
+      box-shadow: 0 16px 50px rgba(10, 35, 75, 0.25);
+    }
+
+    .invitation-card .om {
+      color: #bd8728;
+    }
+
+    .invitation-card .eyebrow {
+      color: #bd8728;
+    }
+
+    .invitation-card h2 {
+      color: var(--blue);
+      font-size: clamp(38px, 10vw, 64px);
+      margin-bottom: 22px;
+    }
+
+    .invitation-card p {
+      font-size: clamp(17px, 4.5vw, 22px);
+      line-height: 1.5;
+    }
+
+    .date {
+      margin: 28px 0;
+      color: var(--blue);
+      font-size: clamp(23px, 6vw, 35px);
+      font-weight: bold;
+      line-height: 1.35;
+    }
+
+    .address {
+      margin: 24px 0;
+      padding: 20px 0;
+      border-top: 1px solid var(--gold);
+      border-bottom: 1px solid var(--gold);
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .names {
+      font-size: 17px;
+      line-height: 1.75;
+    }
+
+    /* Flower offering */
+
+    .flowers {
+      text-align: center;
+      background:
+        linear-gradient(rgba(3, 15, 44, 0.12), rgba(2, 10, 30, 0.62)),
+        url("https://static.prod-images.emergentagent.com/jobs/05f0b221-759e-47bc-87ea-8b5e2481c22f/images/eb6c43a0b51e1c17f3358a1b4a3cb21e7cd567deb7781d0592a1f10937fa266a.jpeg")
+        center / cover;
+    }
+
+    .offer-button {
+      width: 120px;
+      height: 120px;
+      margin: 28px auto 16px;
+      border: 3px solid var(--light-gold);
+      border-radius: 50%;
+      color: var(--deep-navy);
+      background:
+        radial-gradient(circle at 35% 25%, #fff1ad, #d09c38 65%, #81520b);
+      box-shadow:
+        0 0 0 10px rgba(245, 217, 135, 0.18),
+        0 14px 32px rgba(0, 0, 0, 0.42);
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 1.2;
+      transition: transform 0.25s ease;
+    }
+
+    .offer-button:hover,
+    .offer-button:active {
+      transform: scale(1.08);
+    }
+
+    .blessing {
+      color: var(--light-gold);
+      font-size: clamp(17px, 4.7vw, 22px);
+      line-height: 1.5;
+      animation: appear 0.7s ease both;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Flower petals */
+
+    .petal {
+      position: fixed;
+      z-index: 50;
+      width: 15px;
+      height: 23px;
+      border-radius: 70% 30% 70% 30%;
+      pointer-events: none;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.22);
+      animation: flower-flight 3.8s ease-out forwards;
+    }
+
+    @keyframes flower-flight {
+      0% {
+        opacity: 0;
+        transform: translate(0, 18px) rotate(0deg) scale(0.35);
+      }
+
+      12% {
+        opacity: 1;
+      }
+
+      68% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translate(var(--x), var(--y))
+          rotate(var(--rotation))
+          scale(1.15);
+      }
+    }
+
+    /* Closing */
+
+    .closing {
+      text-align: center;
+      background:
+        linear-gradient(rgba(3, 15, 44, 0.13), rgba(2, 10, 30, 0.7)),
+        url("https://static.prod-images.emergentagent.com/jobs/05f0b221-759e-47bc-87ea-8b5e2481c22f/images/52c2e65a8fa4bc56459163d8f96acfaa58fd0d2df8eee01191642fa48af38ba3.jpeg")
+        center / cover;
+    }
+
+    .closing h2 {
+      color: var(--light-gold);
+      font-size: clamp(32px, 9vw, 56px);
+    }
+
+    .replay-button {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 22px;
+      color: var(--light-gold);
+      border: 1px solid var(--gold);
+      border-radius: 28px;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    /* Music button */
+
+    .music-button {
+      position: fixed;
+      z-index: 100;
+      right: 16px;
+      bottom: max(16px, env(safe-area-inset-bottom));
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      color: var(--light-gold);
+      background: rgba(2, 13, 37, 0.86);
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    @media (max-width: 380px) {
+      .section {
+        padding-left: 14px;
+        padding-right: 14px;
+      }
+
+      .invitation-card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .invitation-card p {
+        font-size: 16px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <!-- Opening video and visible modak -->
+    <section class="section opening" id="start">
+
+      <video
+        id="ganeshVideo"
+        class="opening-video"
+        muted
+        playsinline
+        preload="metadata"
+      >
+        <source
+          src="assets/ganeshji-opening.mp4"
+          type="video/mp4"
+        />
+
+        Your browser does not support video playback.
+      </video>
+
+      <div class="opening-overlay"></div>
+
+      <div class="section-content opening-content">
+
+        <div class="om">ॐ</div>
+
+        <div class="eyebrow">
+          An invitation of love & devotion
+        </div>
+
+        <button
+          class="modak-button"
+          type="button"
+          aria-label="Tap the modak to begin"
+          onclick="beginInvitation()"
+        >
+          <span class="modak-shape"></span>
+        </button>
+
+        <div class="tap-label">
+          Tap the modak to begin
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Welcome section -->
+    <section class="section welcome" id="welcome">
+
+      <div class="section-content">
+
+        <div class="om">ॐ</div>
+
+        <div class="eyebrow">
+          With love & devotion
+        </div>
+
+        <h1>
+          Ganpati<br />
+          Bappa Morya
+        </h1>
+
+        <p class="subtitle">
+          May Bappa bless you and your family<br />
+          with happiness, peace and prosperity.
+        </p>
+
+      </div>
+
+      <div class="scroll-hint">
+        Scroll to explore ↓
+      </div>
+    </section>
+
+    <!-- Invitation -->
+    <section class="section invitation" id="invitation">
+
+      <article class="invitation-card">
+
+        <div class="om">ॐ</div>
+
+        <div class="eyebrow">
+          ॥ श्री गणेशाय नमः ॥
+        </div>
+
+        <h2>
+          The Singhi<br />
+          Family
+        </h2>
+
+        <p>
+          invites you and your family to seek<br />
+          blessings of lord Ganesh at our<br />
+          residence
+        </p>
+
+        <div class="date">
+          14th - 18th September, 2026
+        </div>
+
+        <div class="address">
+          <strong>Address :</strong><br />
+          K Ras Residency<br />
+          B Win 302, 3rd Floor<br />
+          Mumbai -400027
+        </div>
+
+        <div class="names">
+          <em>With Love,</em>
+          <br /><br />
+
+          Parasmal Roopchandji Singhi<br />
+          Shilpesh Singhi<br />
+          Amit Singhi
+        </div>
+
+      </article>
+    </section>
+
+    <!-- Flower offering -->
+    <section class="section flowers" id="flowers">
+
+      <div class="section-content">
+
+        <div class="eyebrow">
+          From our hearts
+        </div>
+
+        <h2>
+          Offer Flowers<br />
+          to Bappa
+        </h2>
+
+        <p class="subtitle">
+          Tap below and offer your flowers<br />
+          with love and devotion.
+        </p>
+
+        <button
+          class="offer-button"
+          type="button"
+          onclick="offerFlowers()"
+        >
+          Offer<br />
+          Flowers
+        </button>
+
+        <p
+          id="blessing"
+          class="blessing"
+          hidden
+        >
+          May Bappa bless you and your family.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <section class="section closing" id="closing">
+
+      <div class="section-content">
+
+        <div class="om">ॐ</div>
+
+        <div class="eyebrow">
+          Until we meet
+        </div>
+
+        <h2>
+          Looking forward<br />
+          to having you
+        </h2>
+
+        <p class="subtitle">
+          Your presence will mean<br />
+          the world to us.
+        </p>
+
+        <div class="om">
+          ॥ श्री गणेशाय नमः ॥
+        </div>
+
+        <a
+          class="replay-button"
+          href="#start"
+          onclick="replayInvitation()"
+        >
+          ↻ Replay Invitation
+        </a>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Music control for the video's audio -->
+  <button
+    id="musicButton"
+    class="music-button"
+    type="button"
+    aria-label="Toggle sound"
+    onclick="toggleMusic()"
+  >
+    ♫
+  </button>
+
+  <script>
+    let invitationStarted = false;
+    let flowerOfferCompleted = false;
+    let musicOn = false;
+
+    const video = document.getElementById("ganeshVideo");
+    const musicButton = document.getElementById("musicButton");
+
+    function beginInvitation() {
+      if (invitationStarted) {
+        return;
+      }
+
+      invitationStarted = true;
+      musicOn = true;
+
+      /*
+        The visitor has tapped the screen, so the browser can now
+        attempt to play the video's devotional audio.
+      */
+      video.muted = false;
+
+      video.play().catch(() => {
+        /*
+          If the browser blocks audio, the video still plays silently.
+          The music button remains available for the visitor to enable it.
+        */
+        video.muted = true;
+        video.play().catch(() => {});
+        musicOn = false;
+        musicButton.textContent = "×";
+      });
+
+      musicButton.textContent = musicOn ? "♫" : "×";
+
+      /*
+        Keep the 8-second Ganeshji video visible before moving
+        to the invitation experience.
+      */
+      setTimeout(() => {
+        document
+          .getElementById("welcome")
+          .scrollIntoView({ behavior: "smooth" });
+      }, 8000);
+    }
+
+    video.addEventListener("ended", () => {
+      document
+        .getElementById("welcome")
+        .scrollIntoView({ behavior: "smooth" });
+    });
+
+    function toggleMusic() {
+      musicOn = !musicOn;
+      video.muted = !musicOn;
+      musicButton.textContent = musicOn ? "♫" : "×";
+
+      if (musicOn && video.paused) {
+        video.play().catch(() => {});
+      }
+    }
+
+    function offerFlowers() {
+      if (flowerOfferCompleted) {
+        return;
+      }
+
+      flowerOfferCompleted = true;
+
+      const button = document.querySelector(".offer-button");
+      const buttonBox = button.getBoundingClientRect();
+
+      const colours = [
+        "#e7a832",
+        "#f2bd52",
+        "#fff8dc",
+        "#ffffff",
+        "#4777b7",
+        "#d9852b"
+      ];
+
+      /*
+        A larger devotional shower of flowers.
+      */
+      for (let i = 0; i < 85; i++) {
+        const petal = document.createElement("span");
+
+        petal.className = "petal";
+
+        petal.style.left =
+          `${buttonBox.left + buttonBox.width / 2}px`;
+
+        petal.style.top =
+          `${buttonBox.top + buttonBox.height / 2}px`;
+
+        petal.style.background =
+          colours[Math.floor(Math.random() * colours.length)];
+
+        petal.style.setProperty(
+          "--x",
+          `${(Math.random() - 0.5) * 360}px`
+        );
+
+        petal.style.setProperty(
+          "--y",
+          `${-180 - Math.random() * 430}px`
+        );
+
+        petal.style.setProperty(
+          "--rotation",
+          `${Math.random() * 900 - 450}deg`
+        );
+
+        petal.style.animationDelay =
+          `${Math.random() * 0.75}s`;
+
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+          petal.remove();
+        }, 4400);
+      }
+
+      document.getElementById("blessing").hidden = false;
+
+      setTimeout(() => {
+        document
+          .getElementById("closing")
+          .scrollIntoView({ behavior: "smooth" });
+      }, 3900);
+    }
+
+    function replayInvitation() {
+      invitationStarted = false;
+      flowerOfferCompleted = false;
+      musicOn = false;
+
+      video.pause();
+      video.currentTime = 0;
+      video.muted = true;
+
+      document.getElementById("blessing").hidden = true;
+      musicButton.textContent = "♫";
+    }
+  </script>
+
+</body>
+</html>
